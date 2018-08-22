@@ -1,0 +1,21 @@
+{
+  "name": "breakmatch",
+  "version": "1.0.0",
+  "description": "App for organizing matches and tournaments",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Patryk Kochanski",
+  "license": "ISC"
+}
