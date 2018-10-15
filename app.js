@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const users = require('./routes/users');
 const config = require('./config/database');
 const app = express();
-const port = 8080;
+const port = 8081;
 
 app.use(bodyParser.json());
 app.use(cors());
