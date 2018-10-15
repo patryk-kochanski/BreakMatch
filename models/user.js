@@ -35,14 +35,35 @@ module.exports.getUserByUsername = function(username, callback) {
     User.findOne(query, callback);
 }
 
+module.exports.getUserByEmail = function(email, callback) {
+    const query = {email: email};
+    User.findOne(query, callback);
+}
+
+module.exports.usernameExists = function(user){
+
+    return new Promise ((resolve, reject) => {
+        User.findOne({ username: user.username}, function(err, user) {
+            if(user!=null)
+                resolve(true);
+            else
+                resolve(false);
+        })
+    })
+}
+
 module.exports.addUser = function(newUser, callback) {
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if(err) throw err;
-            newUser.password = hash;
-            newUser.save(callback)
-        });
+    User.usernameExists(newUser).then(result => {
+        console.log("Username:", result);
     });
+
+    bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                if(err) throw err;
+                newUser.password = hash;
+                newUser.save(callback)
+            });
+        });
 }
 
 module.exports.comparePassword = function(candidatePassword, hash, callback){
