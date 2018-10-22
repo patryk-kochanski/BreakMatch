@@ -10,10 +10,12 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
+import { ProfileComponent } from './profile/profile.component'
 
 const appRoutes: Routes = [
   {path:'register', component: RegisterComponent},
-  {path:'login', component: LoginComponent}
+  {path:'login', component: LoginComponent},
+  {path: 'profile', component: ProfileComponent}
 ]
 
 @NgModule({
@@ -21,7 +23,8 @@ const appRoutes: Routes = [
     AppComponent,
     NavbarComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
