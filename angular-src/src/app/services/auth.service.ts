@@ -44,6 +44,13 @@ export class AuthService {
     this.authToken = token;
   }
 
+  loggedIn() {
+    if(this.authToken != undefined && this.authToken != null)
+      return true;
+    else
+      return false;
+  }
+
   logout() {
     this.authToken = null;
     this.user = null;
