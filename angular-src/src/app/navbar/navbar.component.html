@@ -14,13 +14,16 @@
         </li>
       </ul>
       <ul class="navbar-nav navbar-right">
-        <li  class="nav-item">
+        <li  class="nav-item" *ngIf="authService.loggedIn()">
+            <a class="nav-link" href="/profile">Profile</a>
+        </li>
+        <li  class="nav-item" *ngIf="!authService.loggedIn()">
           <a class="nav-link" href="/login">Login</a>
         </li>
-        <li  class="nav-item">
+        <li  class="nav-item" *ngIf="authService.loggedIn()">
           <a class="nav-link" (click)="onLogoutClick()" href="#">Logout</a>
         </li>
-        <li  class="nav-item">
+        <li  class="nav-item" *ngIf="!authService.loggedIn()">
           <a class="nav-link" href="/register">Register</a>
         </li>
       </ul>
