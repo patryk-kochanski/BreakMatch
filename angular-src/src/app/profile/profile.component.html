@@ -1,4 +1,9 @@
 <br>
-<p>
-  profile works!
-</p>
+<div *ngIf="user">
+  <h2 class="page-header">{{user.name}}</h2>
+  <ul class="list-group">
+    <li class="list-grouo-item">{{user.username}}</li>
+    <li class="list-grouo-item">{{user.email}}</li>
+  </ul>
+
+</div>
