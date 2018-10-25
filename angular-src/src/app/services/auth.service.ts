@@ -45,7 +45,8 @@ export class AuthService {
   }
 
   loggedIn() {
-    if(this.authToken != undefined && this.authToken != null)
+    const authToken = localStorage.getItem('id_token')
+    if(authToken != undefined && authToken != null)
       return true;
     else
       return false;
