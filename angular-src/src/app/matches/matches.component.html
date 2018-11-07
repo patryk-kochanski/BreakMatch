@@ -1,0 +1,27 @@
+<div style="display:flex">
+  <span style="float:left">
+    <h3>MATCHES</h3>
+  </span>
+  <span>
+      <input type="text" placeholder="Search..">
+  </span>
+  <span style="float:right; margin-left: 10px">
+    <button>Click me!</button>
+  </span>
+</div>
+
+  <ul class="list-group" style="display:flex; position: relative;">
+    <li class="list-group-item" *ngFor="let match of matches" (click)="onClicked(match)">
+      <div>
+          <span style="font-weight: bold;">{{match.game}} </span>
+          <span style=""> {{match.name}}</span>
+          <span style="display:flex" *ngIf="match.date;else noDate">{{match.date|date}}</span>
+      </div>
+    </li>
+  </ul>
+
+  <ng-template #noDate>
+    <span style="display:flex">
+        No date set
+    </span>
+  </ng-template>

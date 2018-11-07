@@ -11,8 +11,14 @@ router.post('/register', (req, res, next) => {
         name: req.body.name,
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        matchesSignedFor: [],
+        matchesWon: [],
+        matchesLost: [],
+        wins: 0,
+        loses: 0
     });
+    console.log('register');
 
     User.addUser(newUser, (err, user) => {
         if(err)

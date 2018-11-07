@@ -21,6 +21,29 @@ const UserSchema = mongoose.Schema({
     {
         type: String,
         required: true
+    },
+    matchesSignedFor:
+    {
+        type: Array,
+        "default": []
+    },
+    matchesWon:
+    {
+        type: Array,
+        "default": []
+    },
+    matchesLost:
+    {
+        type: Array,
+        "default": []
+    },
+    wins:
+    {
+        type: Number
+    },
+    loses:
+    {
+        type: Number
     }
 });
 

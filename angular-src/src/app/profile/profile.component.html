@@ -1,9 +1,16 @@
 <br>
 <div *ngIf="user">
-  <h2 class="page-header">{{user.name}}</h2>
-  <ul class="list-group">
-    <li class="list-grouo-item">{{user.username}}</li>
-    <li class="list-grouo-item">{{user.email}}</li>
-  </ul>
+  <div style="display:flex">
+    <h2 class="page-header" style="flex:1">{{user.name}}: {{user.wins}}W/{{user.loses}}L</h2>
+    <ul class="list-group" style="flex:2">
+      <li class="list-group-item">{{user.username}}</li>
+      <li class="list-group-item">{{user.email}}</li>
+    </ul>
+  </div>
 
+
+  <h2>Your matches</h2>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let match of user.matchesSignedFor">{{match}}</li>
+  </ul>
 </div>

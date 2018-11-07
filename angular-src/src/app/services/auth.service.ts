@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from "@angular/http";
-import { map } from "rxjs/operators"
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +50,11 @@ export class AuthService {
       return true;
     else
       return false;
+  }
+
+  getLoggedUser() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user.username;
   }
 
   logout() {

@@ -12,11 +12,20 @@ import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { ProfileComponent } from './profile/profile.component'
 import { AuthGuard } from './guards/auth.guard';
+import { EventsComponent } from './events/events.component';
+import { CreateMatchComponent } from './match/create-match.component';
+import { MatchesComponent } from './matches/matches.component';
+import { MatchService } from './services/match.service';
+import { MatchComponent } from './match/match/match.component';
 
 const appRoutes: Routes = [
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
-  {path:'profile', component: ProfileComponent, canActivate: [AuthGuard]}
+  {path:'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path:'matches/create', component: CreateMatchComponent, canActivate: [AuthGuard]},
+  {path:'matches', component: MatchesComponent},
+  {path:'', component: MatchesComponent},
+  {path:'match/:id', component: MatchComponent}
 ]
 
 @NgModule({
@@ -25,7 +34,11 @@ const appRoutes: Routes = [
     NavbarComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    EventsComponent,
+    CreateMatchComponent,
+    MatchesComponent,
+    MatchComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +49,9 @@ const appRoutes: Routes = [
   providers: [ 
     ValidateService,
     AuthService,
-    AuthGuard],
+    AuthGuard,
+    MatchService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

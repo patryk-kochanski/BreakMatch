@@ -1,0 +1,21 @@
+<div *ngIf="match">
+  <br>
+    <h3 style="text-align: center; color: gray">{{match.game}}</h3>
+    <h1 style="text-align: center">{{match.name}}</h1>
+    <h3 style="text-align: center; color: gray">{{match.date | date}}</h3>
+   <h3 style="text-align: center">
+     <span *ngIf="match.playerOne; else noPlayer">
+      {{match.playerOne}}
+     </span>
+     VS
+     <span *ngIf="match.playerTwo; else noPlayer">
+      {{match.playerTwo}}
+     </span>
+   </h3>
+</div>
+
+<ng-template #noPlayer>
+  <span style="color: green">
+    Join
+  </span>
+</ng-template>
