@@ -26,6 +26,7 @@ export class MatchComponent implements OnInit {
 
       this.matchService.getMatch(id).subscribe( (match: any) => {
         this.match = match;
+        console.log(this.match._id);
         
         if(match.playerOne == undefined || match.playerTwo == undefined){
           this.canJoin = true;
@@ -35,6 +36,20 @@ export class MatchComponent implements OnInit {
         }
       })
     });
+  }
+
+  joinMatch() {
+    if(this.canJoin===true)
+    {
+      if(this.match.playerOne == undefined)
+      {
+        this.match.playerOne = this.authService.getLoggedUser();
+      } else {
+        this.match.playerTwo = this.authService.getLoggedUser();
+      }
+      this.matchService.editMatch(this.match).subscribe();
+      this.canJoin = false;
+    }
   }
 
 }

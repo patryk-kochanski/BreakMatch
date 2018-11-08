@@ -51,11 +51,13 @@ module.exports.getMatchById = function(id, callback) {
 }
 
 module.exports.addMatch = function(newMatch, callback) {
-    console.log(newMatch);
     newMatch.save(callback);
 }
 
-module.exports.getAllMatches = function(filter) {
+module.exports.editMatch = function(newMatch, callback) {
+    Match.findByIdAndUpdate(newMatch._id,newMatch, function(err,doc) {
+        if(err) throw err;
+    });
 }
 
 // class Match {

@@ -16,6 +16,12 @@ export class MatchService {
     return this.http.post('http://localhost:8081/matches/create', match, {headers: headers}).pipe(map((res: Response) => res.json()));
   }
 
+  editMatch(match) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:8081/matches/' + match._id + '/edit', match, {headers: headers}).pipe(map((res: Response) => res.json()));
+  }
+
   getMatches() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -27,4 +33,5 @@ export class MatchService {
     headers.append('Content-Type', 'application/json');
     return this.http.get('http://localhost:8081/matches/'+ id, {headers: headers}).pipe(map((res: Response) => res.json()));
   }
+
 }
