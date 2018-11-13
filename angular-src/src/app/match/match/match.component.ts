@@ -10,11 +10,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MatchComponent implements OnInit {
 
-   match: any;
-   canJoin: boolean = false;
-   canEdit: boolean = false;
+  match: any;
+  canJoin: boolean = false;
+  canEdit: boolean = false;
+  editMode:boolean = false;
 
-   constructor(
+  constructor(
     private matchService: MatchService,
     private authService: AuthService,
     private activatedRoute: ActivatedRoute
@@ -26,12 +27,14 @@ export class MatchComponent implements OnInit {
 
       this.matchService.getMatch(id).subscribe( (match: any) => {
         this.match = match;
-        console.log(this.match._id);
-        
-        if(match.playerOne == undefined || match.playerTwo == undefined){
-          this.canJoin = true;
+
+        if(match.playerOne != undefined || match.playerTwo != undefined){
+          if(match.playerOne != this.authService.getLoggedUser() && match.playerTwo != this.authService.getLoggedUser()){
+            this.canJoin = true;
+          }
         }
-        if(match.owner === this.authService.getLoggedUser()){
+
+        if(match.owner == this.authService.getLoggedUser()){
           this.canEdit = true;
         }
       })
@@ -50,6 +53,15 @@ export class MatchComponent implements OnInit {
       this.matchService.editMatch(this.match).subscribe();
       this.canJoin = false;
     }
+  }
+
+  editMatch() {
+    this.editMode = true;
+  }
+
+  onSubmit() {
+    this.matchService.editMatch(this.match).subscribe();
+    this.editMode = false;
   }
 
 }

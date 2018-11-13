@@ -1,16 +1,53 @@
 <br>
 <div *ngIf="user">
   <div style="display:flex">
-    <h2 class="page-header" style="flex:1">{{user.name}}: {{user.wins}}W/{{user.loses}}L</h2>
-    <ul class="list-group" style="flex:2">
-      <li class="list-group-item">{{user.username}}</li>
-      <li class="list-group-item">{{user.email}}</li>
+    <li class="list-group-item" style="flex:1">
+      <br>
+      <h2 class="page-header" style="text-align: center">{{user.name}}: {{user.wins}}W/{{user.loses}}L</h2>
+    </li>
+    <ul class="list-group" style="flex:2; margin-left: 5px">
+      <li class="list-group-item" style="text-align: center">{{user.username}}</li>
+      <li class="list-group-item" style="text-align: center">{{user.email}}</li>
+    </ul>
+    <li class="list-group-item" style="flex:1; margin-left: 5px"(click)="createMatch()">
+      <br>
+    <h3 style="text-align: center; align-items: center; color: green">Create match</h3>
+    </li>
+  </div>
+<br>
+
+<div style="display: flex">
+  <div style="flex:1">
+  <h2>Owned matches:</h2>
+    <ul class="list-group" style="display:flex; position: relative;">
+      <li class="list-group-item" *ngFor="let match of ownedMatches" (click)="onClicked(match)">
+        <div>
+            <span style="font-weight: bold;">{{match.game}} </span>
+            <span style=""> {{match.name}}</span>
+            <span style="display:flex" *ngIf="match.date;else noDate">{{match.date|date}}</span>
+        </div>
+      </li>
     </ul>
   </div>
 
-
-  <h2>Your matches</h2>
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let match of user.matchesSignedFor">{{match}}</li>
-  </ul>
+<div style="flex:1; margin-left: 20px">
+    <h2>Matches you participate in:</h2>
+    <ul class="list-group" style="display:flex; position: relative;">
+      <li class="list-group-item" *ngFor="let match of participations" (click)="onClicked(match)">
+        <div>
+            <span style="font-weight: bold;">{{match.game}} </span>
+            <span style=""> {{match.name}}</span>
+            <span style="display:flex" *ngIf="match.date;else noDate">{{match.date|date}}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
+
+</div>
+
+<ng-template #noDate>
+  <span style="display:flex">
+      No date set
+  </span>
+</ng-template>

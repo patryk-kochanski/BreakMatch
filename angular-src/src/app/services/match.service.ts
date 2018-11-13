@@ -34,4 +34,9 @@ export class MatchService {
     return this.http.get('http://localhost:8081/matches/'+ id, {headers: headers}).pipe(map((res: Response) => res.json()));
   }
 
+  getEvents (user:any) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:8081/matches/events', user, {headers: headers}).pipe(map((res: Response) => res.json()));
+  }
 }

@@ -3,6 +3,7 @@ import { Http, Headers } from "@angular/http";
 import { map } from "rxjs/operators"
 import { AuthService } from '../services/auth.service';
 import { MatchService } from '../services/match.service';
+import { Router } from '@angular/router';
 
 interface IMatch {
     name: String;
@@ -29,7 +30,8 @@ export class CreateMatchComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private matchService: MatchService) { }
+    private matchService: MatchService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -45,8 +47,9 @@ export class CreateMatchComponent implements OnInit {
     }
 
     this.matchService.createMatch(match).subscribe((data) => {
-      // console.log(data);
     });
+    
+    this.router.navigate(['profile'])
 }
 
 }

@@ -18,6 +18,27 @@ router.get('', (req, res, next) => {
     })
 });
 
+router.post('/events', (req, res, next) => {
+    let query = req.body;
+    let queryconditions = [];
+
+    Object.keys(query).forEach(element => {
+        queryconditions.push({ [element]: "" + query[element]})
+    });
+
+    Match.find({$or: queryconditions}, function (err, matches) {
+        if (err) throw err;
+        else {
+            var matchArray = [];
+            matches.forEach(element => {
+                matchArray.push(element);
+            });
+
+            res.json(matchArray);
+        }
+    })
+});
+
 router.post('/create', (req, res, next) => {
     var newMatch = new Match({
         name: req.body.name,

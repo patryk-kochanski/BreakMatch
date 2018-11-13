@@ -1,0 +1,8 @@
+asdf:hover {
+    text-decoration-line: underline;
+}
+h1:hover {
+    text-decoration-color: green;
+    color: green;
+    text-decoration-line: underline;
+}

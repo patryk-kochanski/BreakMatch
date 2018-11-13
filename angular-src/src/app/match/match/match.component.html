@@ -1,7 +1,9 @@
-<div *ngIf="match">
+<div *ngIf="match && !editMode">
   <br>
     <h3 style="text-align: center; color: gray">{{match.game}}</h3>
-    <h1 style="text-align: center">{{match.name}}</h1>
+  <span *ngIf="!canEdit;else owner">
+    <h2 style="text-align: center">{{match.name}} </h2>
+  </span>
     <h3 style="text-align: center; color: gray">{{match.date | date}}</h3>
    <h3 style="text-align: center">
      <span *ngIf="match.playerOne; else noPlayer">
@@ -14,8 +16,45 @@
    </h3>
 </div>
 
+<div *ngIf="match && editMode">
+  <form (submit)="onSubmit()">
+    <br>
+    <div class="container" style="width:50%">
+      <h2 class="page-header" style="text-align:center">Edit match</h2>
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" [(ngModel)]="match.name" name="name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Date</label>
+      <input type="date" [(ngModel)]="match.date" name="date" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Game</label>
+      <input type="text" [(ngModel)]="match.game" name="game" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Player 1</label>
+      <input type="text" [(ngModel)]="match.playerOne" name="playerOne" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Player 2</label>
+      <input type="text" [(ngModel)]="match.playerTwo" name="playerTwo" class="form-control">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit" style="width: 100%">
+  </div>
+  </form>
+</div>
+
 <ng-template #noPlayer>
-  <span style="color: green" (click)="joinMatch()">
+  <span style="color: green" (click)="joinMatch()" *ngIf="canJoin">
     Join
   </span>
+  <span style="color: yellowgreen" (click)="joinMatch()" *ngIf="!canJoin">
+    Empty
+  </span>
+</ng-template>
+
+<ng-template #owner>
+  <h1 class="" style="text-align: center;" (click)="editMatch()">{{match.name}}</h1>
 </ng-template>
