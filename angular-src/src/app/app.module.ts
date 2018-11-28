@@ -17,6 +17,7 @@ import { CreateMatchComponent } from './match/create-match.component';
 import { MatchesComponent } from './matches/matches.component';
 import { MatchService } from './services/match.service';
 import { MatchComponent } from './match/match/match.component';
+import { TournamentComponent } from './tournament/tournament.component';
 
 const appRoutes: Routes = [
   {path:'register', component: RegisterComponent},
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
   {path:'matches/create', component: CreateMatchComponent, canActivate: [AuthGuard]},
   {path:'matches', component: MatchesComponent},
   {path:'', component: MatchesComponent},
-  {path:'match/:id', component: MatchComponent}
+  {path:'match/:id', component: MatchComponent},
+  {path:'tournaments', component: TournamentComponent}
 ]
 
 @NgModule({
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     EventsComponent,
     CreateMatchComponent,
     MatchesComponent,
-    MatchComponent
+    MatchComponent,
+    TournamentComponent
   ],
   imports: [
     BrowserModule,
