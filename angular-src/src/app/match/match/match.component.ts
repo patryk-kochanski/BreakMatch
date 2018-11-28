@@ -27,7 +27,7 @@ export class MatchComponent implements OnInit {
 
       this.matchService.getMatch(id).subscribe( (match: any) => {
         this.match = match;
-
+        console.log(this.match);
         if(match.playerOne != undefined || match.playerTwo != undefined){
           if(match.playerOne != this.authService.getLoggedUser() && match.playerTwo != this.authService.getLoggedUser()){
             this.canJoin = true;

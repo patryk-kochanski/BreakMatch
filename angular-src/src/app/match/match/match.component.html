@@ -14,6 +14,12 @@
       {{match.playerTwo}}
      </span>
    </h3>
+   <h3 style="text-align: center">
+    <span *ngIf="match.playerOneScore">
+      {{match.playerOneScore}} : {{match.playerTwoScore}}
+     </span>
+   </h3>
+   <h3 style="text-align: center; color:greenyellow" *ngIf="match.winner">Winner: {{match.winner}}</h3>
 </div>
 
 <div *ngIf="match && editMode">
@@ -37,9 +43,21 @@
       <label>Player 1</label>
       <input type="text" [(ngModel)]="match.playerOne" name="playerOne" class="form-control">
     </div>
+  <div class="form-group">
+    <label>Player 1 score</label>
+    <input type="text" [(ngModel)]="match.playerOneScore" name="playerOneScore" class="form-control">
+  </div>
     <div class="form-group">
       <label>Player 2</label>
       <input type="text" [(ngModel)]="match.playerTwo" name="playerTwo" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Player 2 score</label>
+      <input type="text" [(ngModel)]="match.playerTwoScore" name="playerTwoScore" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Winner</label>
+      <input type="text" [(ngModel)]="match.winner" name="winner" class="form-control">
     </div>
     <input type="submit" class="btn btn-primary" value="Submit" style="width: 100%">
   </div>

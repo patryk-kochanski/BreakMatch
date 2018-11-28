@@ -68,10 +68,10 @@ router.post('/:id/edit', (req, res, next) => {
         name: req.body.name,
         date: req.body.date,
         playerOne: req.body.playerOne,
-        playerOneScore: 0,
+        playerOneScore: req.body.playerOneScore,
         playerTwo: req.body.playerTwo,
-        playerTwoScore: 0,
-        winner: null,
+        playerTwoScore: req.body.playerTwoScore,
+        winner: req.body.winner,
         owner: req.body.owner,
         description: req.body.description,
         game: req.body.game
