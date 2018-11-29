@@ -1,0 +1,128 @@
+<br>
+<br>
+<div *ngIf="!editMode">
+<h1 style="text-align: center" *ngIf="tournament">{{tournament.name}}</h1>
+<h2 style="text-align: center" *ngIf="tournament">{{tournament.game}}</h2>
+<p (click)="editTournament()" style="text-align: center; color: darkolivegreen; ">You're the owner of this event: Edit</p>
+<br>
+<br>
+
+<div style="display:flex" *ngIf="tournament">
+    <div style="flex:1">
+        <h3 style="text-align: center; color: gray">{{tournament.matchTwoDate | date}}</h3>
+        <h3 style="text-align: center;">
+            <span *ngIf="tournament.playerOne; else noPlayerMatchOne">
+                {{tournament.playerOne}}
+            </span>
+            vs
+            <span *ngIf="tournament.playerTwo; else noPlayerMatchOne">
+                {{tournament.playerTwo}}
+            </span>
+        </h3>
+        <h3 style="text-align: center; color:greenyellow" *ngIf="tournament.matchOneWinner">Winner: {{tournament.matchOneWinner}}</h3>
+    </div>
+
+    <div style="flex:1">
+        <h3 style="text-align: center; color: gray">{{tournament.matchTwoDate | date}}</h3>
+        <h3 style="text-align: center;">
+            <span *ngIf="tournament.playerThree; else noPlayerMatchTwo">
+                {{tournament.playerThree}}
+            </span>
+            vs
+            <span *ngIf="tournament.playerFour; else noPlayerMatchTwo">
+                {{tournament.playerFour}}
+            </span>
+        </h3>
+        <h3 style="text-align: center; color:greenyellow" *ngIf="tournament.matchTwoWinner">Winner: {{tournament.matchTwoWinner}}</h3>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div style="display:flex" *ngIf="tournament">
+    <div style="flex:1">
+        <h3 style="text-align: center; color: gray">{{tournament.finalMatchDate | date}}</h3>
+        <h3 style="text-align: center;">{{tournament.finalistOne}}</h3>
+        <span *ngIf="finalistOne">vs</span>
+        <h3 style="text-align: center;">{{tournament.finalistTwo}}</h3>
+        <h2 style="text-align: center; color:greenyellow" *ngIf="tournament.tournamentWinner">Tournament Winner: {{tournament.tournamentWinner}}</h2>
+    </div>
+</div>
+</div>
+
+<div *ngIf="tournament && editMode">
+    <form (submit)="onTournamentSubmit()">
+        <h2 class="page-header" style="text-align:center">Create tournament</h2>
+        <div class="form-group" style="flex:1">
+          <div class="list-group-item">
+              <label>Tournament Name</label>
+              <input type="text" [(ngModel)]="tournament.name" name="name" class="form-control">
+          </div>
+      </div>
+        <div div style="display:flex">
+      
+          <div class="form-group" style="flex:1">
+              <div class="list-group-item">
+                  <p style="font-weight: bold">Match 1:</p>
+                  <label>Date</label>
+                  <input type="date" [(ngModel)]="tournament.matchOneDate" name="matchOneDate" class="form-control">
+                  <label>Player 1</label>
+                  <input type="text" [(ngModel)]="tournament.playerOne" name="playerOne" class="form-control">
+                  <label>Player 2</label>
+                  <input type="text" [(ngModel)]="tournament.playerTwo" name="playerTwo" class="form-control">
+                  <label>Winner</label>
+                  <input type="text" [(ngModel)]="tournament.matchOneWinner" name="matchOneWinner" class="form-control">
+              </div>
+          </div>
+          <div class="form-group" style="flex:1">
+              <div class="list-group-item">
+                  <p style="font-weight: bold">Match 2:</p>
+                  <label>Date</label>
+                  <input type="date" [(ngModel)]="tournament.matchTwoDate" name="matchTwoDate" class="form-control">
+                  <label>Player 3</label>
+                  <input type="text" [(ngModel)]="tournament.playerThree" name="playerThree" class="form-control">
+                  <label>Player 4</label>
+                  <input type="text" [(ngModel)]="tournament.playerFour" name="playerFour" class="form-control">
+                  <label>Winner</label>
+                  <input type="text" [(ngModel)]="tournament.matchTwoWinner" name="matchTwoWinner" class="form-control">
+              </div>
+          </div>
+        </div>
+        <div class="form-group" style="flex:1">
+            <div class="list-group-item">
+                <p style="font-weight: bold">Final:</p>
+                <label>Date</label>
+                <input type="date" [(ngModel)]="tournament.finalMatchDate" name="finalMatchDate" class="form-control">
+                <label>Finalist 1</label>
+                <input type="text" [(ngModel)]="tournament.finalistOne" name="finalistOne" class="form-control">
+                <label>Finalist 2</label>
+                <input type="text" [(ngModel)]="tournament.finalistTwo" name="finalistTwo" class="form-control">
+                <label>Tournament Winner</label>
+                <input type="text" [(ngModel)]="tournament.tournamentWinner" name="tournamentWinner" class="form-control">
+            </div>
+        </div>
+      
+          <input type="submit" class="btn btn-primary" value="Submit" style="width: 100%">
+      
+      </form>
+</div>
+
+
+<ng-template #noPlayerMatchOne>
+    <span style="color: green" (click)="joinMatchOne()" *ngIf="canJoin">
+      Join
+    </span>
+    <span style="color: goldenrod" *ngIf="!canJoin">
+      Empty
+    </span>
+  </ng-template>
+
+  <ng-template #noPlayerMatchTwo>
+    <span style="color: green" (click)="joinMatchTwo()" *ngIf="canJoin">
+      Join
+    </span>
+    <span style="color: goldenrod" *ngIf="!canJoin">
+      Empty
+    </span>
+  </ng-template>

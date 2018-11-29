@@ -17,6 +17,8 @@ import { CreateMatchComponent } from './match/create-match.component';
 import { MatchesComponent } from './matches/matches.component';
 import { MatchService } from './services/match.service';
 import { MatchComponent } from './match/match/match.component';
+import { TournamentsComponent } from './tournaments/tournaments.component';
+import { CreateTournamentComponent } from './create-tournament/create-tournament.component';
 import { TournamentComponent } from './tournament/tournament.component';
 
 const appRoutes: Routes = [
@@ -27,7 +29,10 @@ const appRoutes: Routes = [
   {path:'matches', component: MatchesComponent},
   {path:'', component: MatchesComponent},
   {path:'match/:id', component: MatchComponent},
-  {path:'tournaments', component: TournamentComponent}
+  {path:'tournament/create', component: CreateTournamentComponent, canActivate: [AuthGuard]},
+  {path:'tournaments', component: TournamentsComponent},
+  {path:'tournament/:id', component: TournamentComponent}
+
 ]
 
 @NgModule({
@@ -41,6 +46,8 @@ const appRoutes: Routes = [
     CreateMatchComponent,
     MatchesComponent,
     MatchComponent,
+    TournamentsComponent,
+    CreateTournamentComponent,
     TournamentComponent
   ],
   imports: [

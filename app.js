@@ -6,6 +6,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const users = require('./routes/users');
 const matches = require('./routes/matches');
+const tournaments = require('./routes/tournaments')
 const config = require('./config/database');
 const app = express();
 const port = 8081;
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/matches', matches);
 app.use('/users', users);
+app.use('/tournaments', tournaments)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());

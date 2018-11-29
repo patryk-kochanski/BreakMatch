@@ -1,0 +1,5 @@
+p:hover {
+    text-decoration-color: green;
+    color: green;
+    text-decoration-line: underline;
+}

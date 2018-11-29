@@ -1,0 +1,21 @@
+<div style="display:flex">
+        <span style="float:left">
+          <h3>TOURNAMENTS</h3>
+        </span>
+      </div>
+      
+        <ul class="list-group" style="display:flex; position: relative;">
+          <li class="list-group-item" *ngFor="let tournament of tournaments" (click)="onClicked(tournament)">
+            <div>
+                <span style="font-weight: bold;">{{tournament.game}} </span>
+                <span style=""> {{tournament.name}}</span>
+                <span style="display:flex" *ngIf="!tournament.tournamentWinner;else noDate">Ongoing</span>
+            </div>
+          </li>
+        </ul>
+      
+        <ng-template #noDate>
+          <span style="display:flex">
+              Finished
+          </span>
+        </ng-template>
